@@ -37,10 +37,10 @@ def extract_requirements(query: str) -> ShoppingRequirements:
         width = "narrow"
 
     gender = None
-    if "men" in text or "male" in text:
-        gender = "men"
-    elif "women" in text or "female" in text:
+    if "women" in text or "female" in text:
         gender = "women"
+    elif "men" in text or "male" in text:
+        gender = "men"
 
     preferences = []
     for phrase in ("comfortable", "cushioned", "lightweight", "breathable", "durable"):

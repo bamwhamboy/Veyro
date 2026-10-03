@@ -2,20 +2,33 @@
 
 ## Goal
 
-Build Veyro as a modular AI shopping-research platform, starting with shoes.
+Build Veyro as an AI-powered product authenticity verification platform,
+starting with footwear in India.
 
 ## Engineering principles
 
-- Prefer small, testable components.
-- Keep product research/provider integrations behind clear interfaces.
-- Separate user-requirement extraction from product retrieval, normalisation, ranking and explanation.
-- Never hard-code retailer-specific logic into the core orchestrator.
-- Treat price, availability and product attributes as time-sensitive data.
-- Make model/provider choices configurable.
-- Add tests for core business logic before adding complexity.
+- Keep submissions, product identification, evidence collection, comparison,
+  assessment, and reporting as separate steps.
+- Every assessment claim and conclusion must cite evidence IDs included in the
+  report; evidence must cite a provenance source.
+- Keep web search, OCR, vision, and brand/catalogue integrations behind
+  replaceable provider interfaces.
+- Store submitted metadata and uploaded photos durably; do not keep request
+  uploads only in process memory.
+- Treat user listing details and provider output as unverified until assessed.
+- Do not introduce shopping recommendations or fabricated/demo evidence into
+  production verification.
+- Keep Sprint 0 as a single pipeline; do not add multi-agent/deep-agent
+  architecture.
 
-## v0.1 scope
+## Sprint 1 scope
 
-Implement a thin vertical slice that can accept a shopping request, extract structured requirements, run product research through a provider interface, filter candidates, and return an explainable shortlist.
+India and footwear only. Accept real listing/photo submissions, extract
+visible fields with OCR, report photo quality, and preserve evidence links.
+Keep production vision, web research, and brand catalogue services behind the
+same replaceable interfaces.
 
-Do not build multi-agent/deep-agent complexity until the single-agent flow is working end to end.
+The current implementation also includes Sprint 2 web identification, Sprint
+3 evidence comparison and persistence, Sprint 4 explainable assessments, and a
+Sprint 5 local developer UI. Gemini and OpenAI vision providers are selectable
+through configuration and share one provider interface.

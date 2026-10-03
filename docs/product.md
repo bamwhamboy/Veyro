@@ -10,6 +10,10 @@ Shopping research is fragmented. Users describe a need in natural language, whil
 
 Veyro should identify the hard constraints, research candidate shoes, compare evidence and explain why a product made the shortlist.
 
+## Initial market
+
+Veyro v0.1 is India-specific: INR pricing, Indian availability and India-focused retailer/brand sources. The market is modelled explicitly so other countries can be added later without changing the core research pipeline.
+
 ## Initial brands
 
 Nike, Puma, ASICS, Crocs, Skechers and other relevant footwear brands/retailers can be added through providers.

@@ -3,6 +3,8 @@ from typing import Literal
 
 
 class ShoppingRequirements(BaseModel):
+    market: str = "IN"
+    currency: str = "INR"
     category: str = "shoes"
     use_case: list[str] = Field(default_factory=list)
     budget_max_inr: int | None = None

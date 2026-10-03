@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from .providers import DemoFootwearProvider
+from .providers import IndiaFootwearProvider
 from .requirements import extract_requirements
 from .research import research
 
 app = FastAPI(title="Veyro API", version="0.1.0")
 
-provider = DemoFootwearProvider()
+provider = IndiaFootwearProvider()
 
 
 class ShoppingRequest(BaseModel):
@@ -16,7 +16,7 @@ class ShoppingRequest(BaseModel):
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "service": "veyro"}
+    return {"status": "ok", "service": "veyro", "market": "IN"}
 
 
 @app.post("/v1/requirements")
@@ -34,7 +34,9 @@ def research_endpoint(request: ShoppingRequest) -> dict[str, object]:
     products = research(request.query, parsed, provider)
     return {
         "query": request.query,
+        "market": "IN",
+        "currency": "INR",
         "requirements": parsed.model_dump(),
         "products": [product.model_dump() for product in products],
-        "provider": "demo",
+        "provider": "india_footwear",
     }

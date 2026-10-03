@@ -1,8 +1,10 @@
 from .products import Product, ProductProvider
 
 
-class DemoFootwearProvider(ProductProvider):
-    """Deterministic provider used until live retailer search is connected."""
+class IndiaFootwearProvider(ProductProvider):
+    """India-first provider. Live retailer adapters will implement this interface."""
+
+    market = "IN"
 
     _products = [
         Product(
@@ -10,6 +12,7 @@ class DemoFootwearProvider(ProductProvider):
             brand="Skechers",
             price_inr=7999,
             source="demo",
+            market="IN",
             use_case=["walking", "daily wear"],
             width="wide",
             features=["comfortable", "cushioned", "lightweight"],
@@ -19,6 +22,7 @@ class DemoFootwearProvider(ProductProvider):
             brand="ASICS",
             price_inr=9499,
             source="demo",
+            market="IN",
             use_case=["running", "walking"],
             width="standard",
             features=["cushioned", "breathable", "lightweight"],
@@ -28,6 +32,7 @@ class DemoFootwearProvider(ProductProvider):
             brand="Nike",
             price_inr=11999,
             source="demo",
+            market="IN",
             use_case=["walking"],
             width="standard",
             features=["comfortable", "cushioned"],
@@ -36,3 +41,8 @@ class DemoFootwearProvider(ProductProvider):
 
     def search(self, query: str, *, limit: int = 20) -> list[Product]:
         return self._products[:limit]
+
+
+# Future markets can add providers without changing the research layer:
+# class USFootwearProvider(ProductProvider): ...
+# class UKFootwearProvider(ProductProvider): ...
